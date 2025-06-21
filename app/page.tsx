@@ -1,133 +1,573 @@
-import Image from "next/image"
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Star, MapPin, Phone, MessageCircle, Users, Bed, Bath } from "lucide-react"
+import Image from "next/image"
 
-export default function HomePage() {
-  return (
-    <div className="min-h-screen relative">
-      {/* Header - Exact replica */}
-      <header className="absolute top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100/20">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          {/* Logo - Exact positioning and styling */}
-          <div className="text-2xl font-semibold text-amber-900 tracking-tight">Ko Lake Villa</div>
+export default function KoLakeVilla() {
+  const [currentPage, setCurrentPage] = useState("home")
 
-          {/* Navigation - Exact spacing and colors */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            <a
-              href="#"
-              className="text-orange-500 font-medium text-sm hover:text-orange-600 transition-colors duration-200"
+  const roomTypes = [
+    {
+      id: "KNP",
+      name: "Entire Villa Exclusive",
+      airbnbPrice: 431,
+      directPrice: 388,
+      savings: 43,
+      discount: "10%",
+      guests: 12,
+      bedrooms: 6,
+      bathrooms: 4,
+      image: "/placeholder.svg?height=300&width=400&text=Entire+Villa+View",
+      features: ["Private Pool", "Lake Views", "Full Kitchen", "6 Bedrooms"],
+    },
+    {
+      id: "KNP1",
+      name: "Master Family Suite",
+      airbnbPrice: 119,
+      directPrice: 107,
+      savings: 12,
+      discount: "10%",
+      guests: 4,
+      bedrooms: 1,
+      bathrooms: 1,
+      image: "/placeholder.svg?height=300&width=400&text=Master+Suite",
+      features: ["Lake View", "Private Balcony", "King Bed", "En-suite Bath"],
+    },
+    {
+      id: "KNP3",
+      name: "Triple/Twin Rooms",
+      airbnbPrice: 70,
+      directPrice: 63,
+      savings: 7,
+      discount: "10%",
+      guests: 3,
+      bedrooms: 1,
+      bathrooms: 1,
+      image: "/placeholder.svg?height=300&width=400&text=Twin+Room",
+      features: ["Garden View", "Twin/Triple Beds", "Shared Facilities", "AC"],
+    },
+    {
+      id: "KNP6",
+      name: "Group Room",
+      airbnbPrice: 250,
+      directPrice: 225,
+      savings: 25,
+      discount: "10%",
+      guests: 6,
+      bedrooms: 2,
+      bathrooms: 2,
+      image: "/placeholder.svg?height=300&width=400&text=Group+Room",
+      features: ["Multiple Beds", "Shared Space", "Group Friendly", "Lake Access"],
+    },
+  ]
+
+  const galleryImages = [
+    { src: "/placeholder.svg?height=300&width=400&text=Villa+Exterior", title: "Villa Exterior" },
+    { src: "/placeholder.svg?height=300&width=400&text=Pool+Area", title: "Pool Area" },
+    { src: "/placeholder.svg?height=300&width=400&text=Lake+View", title: "Lake View" },
+    { src: "/placeholder.svg?height=300&width=400&text=Master+Bedroom", title: "Master Bedroom" },
+    { src: "/placeholder.svg?height=300&width=400&text=Living+Room", title: "Living Room" },
+    { src: "/placeholder.svg?height=300&width=400&text=Dining+Area", title: "Dining Area" },
+  ]
+
+  const renderNavigation = () => (
+    <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <h1 className="text-2xl font-bold text-blue-900 cursor-pointer" onClick={() => setCurrentPage("home")}>
+            Ko Lake Villa
+          </h1>
+          <div className="flex space-x-6">
+            <button
+              onClick={() => setCurrentPage("home")}
+              className={`${currentPage === "home" ? "text-blue-900 font-medium" : "text-gray-700 hover:text-blue-900"}`}
             >
               Home
-            </a>
-            <a
-              href="#"
-              className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
+            </button>
+            <button
+              onClick={() => setCurrentPage("rooms")}
+              className={`${currentPage === "rooms" ? "text-blue-900 font-medium" : "text-gray-700 hover:text-blue-900"}`}
             >
-              Deals
-            </a>
-            <a
-              href="#"
-              className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
-            >
-              Accommodation
-            </a>
-            <a
-              href="#"
-              className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
-            >
-              Dining
-            </a>
-            <a
-              href="#"
-              className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
-            >
-              Experiences
-            </a>
-            <a
-              href="#"
-              className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
+              Rooms
+            </button>
+            <button
+              onClick={() => setCurrentPage("gallery")}
+              className={`${currentPage === "gallery" ? "text-blue-900 font-medium" : "text-gray-700 hover:text-blue-900"}`}
             >
               Gallery
-            </a>
-            <a
-              href="#"
-              className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
-            >
-              FAQ
-            </a>
-            <a
-              href="#"
-              className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
+            </button>
+            <button
+              onClick={() => setCurrentPage("contact")}
+              className={`${currentPage === "contact" ? "text-blue-900 font-medium" : "text-gray-700 hover:text-blue-900"}`}
             >
               Contact
-            </a>
-          </nav>
-
-          {/* Book Now Button - Exact styling */}
-          <Button className="bg-orange-400 hover:bg-orange-500 text-white font-medium text-sm px-6 py-2.5 rounded-md shadow-sm transition-all duration-200">
-            Book Now
-          </Button>
+            </button>
+            <Button onClick={() => setCurrentPage("booking")}>Book Now</Button>
+          </div>
         </div>
-      </header>
+      </div>
+    </nav>
+  )
 
-      {/* Hero Section - Exact replica */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image - Exact positioning */}
-        <div className="absolute inset-0 w-full h-full">
+  const renderHomePage = () => (
+    <div>
+      {/* Hero Section */}
+      <section className="relative h-[70vh] bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div className="absolute inset-0">
           <Image
-            src="https://sjc.microlink.io/-llAJQf-CPVh7tNIxiNbaTnOy4Csorx_ezydgBAslpMUzUuNbMgCflf-FYeAE_f2VFlI_EMDbx7WXicXKXV0Gw.jpeg"
-            alt="Ko Lake Villa Pool and Villa View"
+            src="/placeholder.svg?height=600&width=1200&text=Ko+Lake+Villa+Hero"
+            alt="Ko Lake Villa"
             fill
-            className="object-cover object-center"
-            priority
-            quality={100}
+            className="object-cover opacity-30"
           />
-          {/* Overlay - Exact opacity */}
-          <div className="absolute inset-0 bg-black/25"></div>
         </div>
-
-        {/* Hero Content - Exact positioning and typography */}
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          {/* Main Heading - Exact font size and spacing */}
-          <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-none">Ko Lake Villa</h1>
-
-          {/* Subtitle - Exact text and styling */}
-          <p className="text-xl lg:text-2xl mb-12 font-light tracking-wide leading-relaxed">
-            Relax. Revive. Reconnect by the Lake in Ahangama, Sri Lanka.
-          </p>
-
-          {/* Action Buttons - Exact spacing and styling */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              variant="outline"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-medium text-base px-8 py-3 rounded-md transition-all duration-300 min-w-[140px]"
-            >
-              View Gallery
-            </Button>
-            <Button
-              variant="outline"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-medium text-base px-8 py-3 rounded-md transition-all duration-300 min-w-[140px]"
-            >
-              Request Info
-            </Button>
-            <Button className="bg-orange-400 hover:bg-orange-500 text-white font-medium text-base px-8 py-3 rounded-md shadow-lg transition-all duration-300 min-w-[180px]">
-              Book Direct - Save 10%
-            </Button>
+        <div className="relative z-10 flex items-center justify-center h-full text-center">
+          <div className="max-w-4xl mx-auto px-4">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Ko Lake Villa</h1>
+            <p className="text-xl md:text-2xl mb-4">Luxury Lakefront Accommodation in Sri Lanka</p>
+            <div className="flex items-center justify-center mb-8">
+              <MapPin className="w-5 h-5 mr-2" />
+              <span className="text-lg">Koggala Lake, Galle District</span>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                className="bg-white text-blue-900 hover:bg-gray-100"
+                onClick={() => setCurrentPage("rooms")}
+              >
+                View Rooms & Rates
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-white border-white hover:bg-white hover:text-black"
+                onClick={() => setCurrentPage("gallery")}
+              >
+                Explore Gallery
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* WhatsApp Chat Widget - Exact positioning and styling */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Button
-          size="lg"
-          className="bg-green-500 hover:bg-green-600 text-white rounded-full w-14 h-14 p-0 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
-          aria-label="Chat on WhatsApp"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
-          </svg>
-        </Button>
-      </div>
+      {/* Quick Stats */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-bold text-blue-900 mb-2">12</div>
+              <div className="text-gray-600">Max Guests</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-blue-900 mb-2">6</div>
+              <div className="text-gray-600">Bedrooms</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-blue-900 mb-2">4.9</div>
+              <div className="text-gray-600 flex items-center justify-center">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" />
+                Rating
+              </div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-blue-900 mb-2">15%</div>
+              <div className="text-gray-600">Save Direct</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Room Preview */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Choose Your Perfect Stay</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              From intimate suites to the entire villa, we offer flexible accommodation options with significant savings
+              when you book direct.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {roomTypes.map((room) => (
+              <Card key={room.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="relative">
+                  <Image
+                    src={room.image || "/placeholder.svg"}
+                    alt={room.name}
+                    width={400}
+                    height={300}
+                    className="w-full h-48 object-cover"
+                  />
+                  <Badge className="absolute top-3 right-3 bg-red-500">Save {room.discount}</Badge>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{room.name}</h3>
+                  <p className="text-gray-600 mb-4">{room.guests} guests</p>
+
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm text-gray-500 line-through">Airbnb: ${room.airbnbPrice}</span>
+                      <span className="text-sm text-green-600 font-medium">Save ${room.savings}</span>
+                    </div>
+                    <div className="text-2xl font-bold text-blue-900">
+                      ${room.directPrice}
+                      <span className="text-sm font-normal text-gray-500">/night</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 mb-4">
+                    {room.features.slice(0, 2).map((feature, index) => (
+                      <div key={index} className="text-sm text-gray-600">
+                        • {feature}
+                      </div>
+                    ))}
+                  </div>
+
+                  <Button className="w-full" onClick={() => setCurrentPage("booking")}>
+                    Book Direct & Save
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+
+  const renderRoomsPage = () => (
+    <div>
+      <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl font-bold mb-4">Our Accommodation</h1>
+          <p className="text-xl mb-8 max-w-3xl mx-auto">
+            Choose from our range of luxury accommodation options, each offering unique experiences with significant
+            savings when you book direct.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-16">
+            {roomTypes.map((room, index) => (
+              <Card key={room.id} className="overflow-hidden shadow-lg">
+                <div className={`grid grid-cols-1 lg:grid-cols-2 ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>
+                  <div className={`relative ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
+                    <Image
+                      src={room.image || "/placeholder.svg"}
+                      alt={room.name}
+                      width={600}
+                      height={400}
+                      className="w-full h-96 lg:h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4 flex gap-2">
+                      <Badge className="bg-red-500">Save {room.discount}</Badge>
+                      <Badge className="bg-green-500">≤3 days: 15%</Badge>
+                    </div>
+                  </div>
+
+                  <CardContent
+                    className={`p-8 flex flex-col justify-between ${index % 2 === 1 ? "lg:col-start-1" : ""}`}
+                  >
+                    <div>
+                      <h2 className="text-3xl font-bold text-gray-900 mb-2">{room.name}</h2>
+                      <p className="text-lg text-gray-600 mb-6">Perfect for {room.guests} guests</p>
+
+                      <div className="grid grid-cols-3 gap-4 mb-6">
+                        <div className="text-center">
+                          <Users className="w-6 h-6 mx-auto mb-2 text-blue-600" />
+                          <div className="text-sm text-gray-600">Up to</div>
+                          <div className="font-semibold">{room.guests} guests</div>
+                        </div>
+                        <div className="text-center">
+                          <Bed className="w-6 h-6 mx-auto mb-2 text-blue-600" />
+                          <div className="text-sm text-gray-600">Bedrooms</div>
+                          <div className="font-semibold">{room.bedrooms}</div>
+                        </div>
+                        <div className="text-center">
+                          <Bath className="w-6 h-6 mx-auto mb-2 text-blue-600" />
+                          <div className="text-sm text-gray-600">Bathrooms</div>
+                          <div className="font-semibold">{room.bathrooms}</div>
+                        </div>
+                      </div>
+
+                      <div className="bg-gray-50 rounded-lg p-6 mb-6">
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-lg text-gray-500 line-through">Airbnb: ${room.airbnbPrice}/night</span>
+                          <span className="text-lg text-green-600 font-semibold">You Save: ${room.savings}</span>
+                        </div>
+                        <div className="text-3xl font-bold text-blue-900">
+                          ${room.directPrice}
+                          <span className="text-lg font-normal text-gray-500">/night direct</span>
+                        </div>
+                      </div>
+
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-gray-900 mb-3">Key Features</h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {room.features.map((feature, idx) => (
+                            <div key={idx} className="flex items-center text-sm text-gray-600">
+                              <Star className="w-4 h-4 mr-2 text-yellow-500 fill-current" />
+                              {feature}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <Button className="w-full" onClick={() => setCurrentPage("booking")}>
+                      Book Direct & Save
+                    </Button>
+                  </CardContent>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+
+  const renderGalleryPage = () => (
+    <div>
+      <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl font-bold mb-4">Photo Gallery</h1>
+          <p className="text-xl mb-8 max-w-3xl mx-auto">
+            Explore the beauty of Ko Lake Villa through our comprehensive photo gallery.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {galleryImages.map((image, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+              >
+                <Image
+                  src={image.src || "/placeholder.svg"}
+                  alt={image.title}
+                  width={400}
+                  height={300}
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-end">
+                  <div className="p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="font-semibold text-lg">{image.title}</h3>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+
+  const renderBookingPage = () => (
+    <div>
+      <section className="py-12 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl font-bold mb-4">Book Your Stay</h1>
+          <p className="text-xl">Complete the form below and we'll confirm your reservation within 2 hours</p>
+        </div>
+      </section>
+
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Card>
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-bold mb-6">Booking Request</h2>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                  <input
+                    type="text"
+                    className="w-full p-3 border border-gray-300 rounded-md"
+                    placeholder="Enter your full name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                  <input
+                    type="email"
+                    className="w-full p-3 border border-gray-300 rounded-md"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Check-in Date</label>
+                    <input type="date" className="w-full p-3 border border-gray-300 rounded-md" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Check-out Date</label>
+                    <input type="date" className="w-full p-3 border border-gray-300 rounded-md" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Room Type</label>
+                  <select className="w-full p-3 border border-gray-300 rounded-md">
+                    <option>Select room type</option>
+                    {roomTypes.map((room) => (
+                      <option key={room.id} value={room.id}>
+                        {room.name} - ${room.directPrice}/night
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Special Requests</label>
+                  <textarea
+                    className="w-full p-3 border border-gray-300 rounded-md"
+                    rows={4}
+                    placeholder="Any special requests?"
+                  ></textarea>
+                </div>
+                <Button className="w-full" size="lg">
+                  Submit Booking Request
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    </div>
+  )
+
+  const renderContactPage = () => (
+    <div>
+      <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
+          <p className="text-xl mb-8 max-w-3xl mx-auto">
+            Get in touch with our friendly team. We're here to help you plan the perfect stay.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                    <input type="text" className="w-full p-3 border border-gray-300 rounded-md" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" className="w-full p-3 border border-gray-300 rounded-md" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                    <textarea className="w-full p-3 border border-gray-300 rounded-md" rows={5}></textarea>
+                  </div>
+                  <Button className="w-full">Send Message</Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="space-y-8">
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold mb-4">Get in Touch</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <Phone className="w-5 h-5 text-blue-600" />
+                      <div>
+                        <div className="font-medium">Phone</div>
+                        <div className="text-gray-600">+94 123 456 789</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <MessageCircle className="w-5 h-5 text-green-600" />
+                      <div>
+                        <div className="font-medium">WhatsApp</div>
+                        <div className="text-gray-600">Quick responses, 24/7</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <MapPin className="w-5 h-5 text-orange-600" />
+                      <div>
+                        <div className="font-medium">Location</div>
+                        <div className="text-gray-600">Koggala Lake, Galle District</div>
+                      </div>
+                    </div>
+                  </div>
+                  <Button className="w-full mt-6 bg-green-600 hover:bg-green-700">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Chat on WhatsApp
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+
+  return (
+    <div className="min-h-screen bg-white">
+      {renderNavigation()}
+
+      {currentPage === "home" && renderHomePage()}
+      {currentPage === "rooms" && renderRoomsPage()}
+      {currentPage === "gallery" && renderGalleryPage()}
+      {currentPage === "booking" && renderBookingPage()}
+      {currentPage === "contact" && renderContactPage()}
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Ko Lake Villa</h3>
+              <p className="text-gray-400">Luxury lakefront accommodation in Sri Lanka's southern coast.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Contact</h4>
+              <div className="space-y-2 text-gray-400">
+                <div>+94 123 456 789</div>
+                <div>info@kolakevilla.com</div>
+                <div>Koggala Lake, Galle</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Why Book Direct?</h4>
+              <div className="space-y-2 text-gray-400">
+                <div>• Save up to 15%</div>
+                <div>• Best Rate Guarantee</div>
+                <div>• Personalized Service</div>
+                <div>• Flexible Cancellation</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Follow Us</h4>
+              <div className="space-y-2 text-gray-400">
+                <div>Facebook</div>
+                <div>Instagram</div>
+                <div>TripAdvisor</div>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 Ko Lake Villa. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

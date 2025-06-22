@@ -1,0 +1,67 @@
+{
+  "brandName": "Ko Lake Villa",
+  "tagline": "Luxury Lakefront Resort in Koggala, Sri Lanka",
+  "colors": {
+    "primary": "#1e40af",
+    "secondary": "#0ea5e9",
+    "accent": "#f59e0b",
+    "dark": "#1f2937",
+    "light": "#f8fafc"
+  },
+  "typography": {
+    "fontFamily": "Inter, Segoe UI, sans-serif",
+    "headingWeight": "600-700",
+    "bodyWeight": "400-500"
+  },
+  "roomTypes": [
+    {
+      "id": "KLV",
+      "name": "Entire Villa",
+      "capacity": "Up to 18 guests",
+      "price": 388,
+      "savings": 43
+    },
+    {
+      "id": "KLV1",
+      "name": "Master Family Suite",
+      "capacity": "6+ guests",
+      "price": 107,
+      "savings": 12
+    },
+    {
+      "id": "KLV3",
+      "name": "Triple/Twin Room",
+      "capacity": "3+ guests",
+      "price": 63,
+      "savings": 7
+    },
+    {
+      "id": "KLV6",
+      "name": "Group Room",
+      "capacity": "6+ guests",
+      "price": 225,
+      "savings": 25
+    }
+  ],
+  "galleryCategories": [
+    "entire-villa",
+    "family-suite",
+    "group-room",
+    "triple-room",
+    "dining-area",
+    "pool-deck",
+    "lake-garden",
+    "roof-garden",
+    "front-garden",
+    "koggala-lake",
+    "excursions"
+  ],
+  "keyFeatures": [
+    "Lakefront Location",
+    "7 Bedrooms",
+    "Up to 18 Guests",
+    "Pool & Gardens",
+    "Direct Booking Savings",
+    "Sri Lankan Hospitality"
+  ]
+}

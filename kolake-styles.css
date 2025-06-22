@@ -1,0 +1,184 @@
+/* Ko Lake Villa - Master Stylesheet */
+
+:root {
+  --kolake-primary: #1e40af;
+  --kolake-secondary: #0ea5e9;
+  --kolake-accent: #f59e0b;
+  --kolake-dark: #1f2937;
+  --kolake-gray: #6b7280;
+  --kolake-light: #f8fafc;
+  --kolake-white: #ffffff;
+  --kolake-green: #059669;
+  --kolake-sand: #fbbf24;
+}
+
+/* Hero Section */
+.kolake-hero {
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.8) 0%, rgba(14, 165, 233, 0.6) 100%);
+  min-height: 80vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.kolake-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/images/kolake-hero-villa.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+/* Room Cards */
+.kolake-room-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.kolake-room-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Pricing */
+.kolake-price {
+  color: var(--kolake-primary);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.kolake-savings {
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--kolake-green);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Buttons */
+.kolake-btn-primary {
+  background: var(--kolake-accent);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.kolake-btn-primary:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+}
+
+.kolake-btn-secondary {
+  background: transparent;
+  color: var(--kolake-primary);
+  border: 2px solid var(--kolake-primary);
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.kolake-btn-secondary:hover {
+  background: var(--kolake-primary);
+  color: white;
+}
+
+/* Typography */
+.kolake-heading-1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--kolake-dark);
+}
+
+.kolake-heading-2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--kolake-dark);
+}
+
+.kolake-heading-3 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--kolake-dark);
+}
+
+.kolake-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--kolake-gray);
+}
+
+.kolake-lead {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--kolake-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kolake-heading-1 {
+    font-size: 2.5rem;
+  }
+  .kolake-heading-2 {
+    font-size: 2rem;
+  }
+  .kolake-hero {
+    min-height: 60vh;
+  }
+}
+
+/* Gallery */
+.kolake-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.kolake-gallery-item {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.kolake-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.kolake-gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Contact Section */
+.kolake-contact {
+  background: linear-gradient(135deg, var(--kolake-light) 0%, white 100%);
+  padding: 4rem 0;
+}
+
+.kolake-contact-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}

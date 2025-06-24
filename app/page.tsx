@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function HomePage() {
   return (
@@ -8,58 +9,60 @@ export default function HomePage() {
       <header className="absolute top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100/20">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo - Exact positioning and styling */}
-          <div className="text-2xl font-semibold text-amber-900 tracking-tight">Ko Lake Villa</div>
+          <Link href="/" className="text-2xl font-semibold text-amber-900 tracking-tight">
+            Ko Lake Villa
+          </Link>
 
           {/* Navigation - Exact spacing and colors */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="text-orange-500 font-medium text-sm hover:text-orange-600 transition-colors duration-200"
             >
               Home
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/deals"
               className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
             >
               Deals
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/accommodation"
               className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
             >
               Accommodation
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/dining"
               className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
             >
               Dining
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/experiences"
               className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
             >
               Experiences
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/gallery"
               className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
             >
               Gallery
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/faq"
               className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
             >
               FAQ
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/contact"
               className="text-gray-700 font-medium text-sm hover:text-orange-500 transition-colors duration-200"
             >
               Contact
-            </a>
+            </Link>
           </nav>
 
           {/* Book Now Button - Exact styling */}
